@@ -77,9 +77,9 @@ func testAccCheckHerokuTeamCollaboratorExists(n string, teamCollaborator *heroku
 			return fmt.Errorf("[ERROR] No Team Collaborator Set")
 		}
 
-		config := testAccProvider.Meta().(*Config)
+		client := testAccProvider.Meta().(*Config)
 
-		foundTeamCollaborator, err := config.Api.TeamAppCollaboratorInfo(context.TODO(), rs.Primary.Attributes["app"], rs.Primary.ID)
+		foundTeamCollaborator, err := client.Api.TeamAppCollaboratorInfo(context.TODO(), rs.Primary.Attributes["app"], rs.Primary.ID)
 
 		if err != nil {
 			return err
